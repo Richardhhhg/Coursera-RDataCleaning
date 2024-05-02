@@ -59,7 +59,7 @@ averages <- data %>%
     group_by(activity) %>%
     summarise(across(where(is.numeric), mean))
 
-
+write.table(averages, "tidy_data.txt", row.names = FALSE)
 
 
 

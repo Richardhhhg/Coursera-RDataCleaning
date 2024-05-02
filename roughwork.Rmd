@@ -72,7 +72,7 @@ print(mean_df)
 ```
 
 ```{r}
-
+write.table(mean_df, "tidy_data.txt", row.names = FALSE)
 ```
 
 ```{r}
