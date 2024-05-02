@@ -1,45 +1,23 @@
-## Part 1 - Merging Data
+## Explanation of Variables
 
-### Procedure:
+X_train: Training Data Features
 
-1.  Loaded up all the train and test variables and labels
-2.  Concatenated Feature and Labels
-    1.  *X_train* and *X_test* becomes *features*
-    2.  *Y_train* and *Y_test* become *data_labels*
-3.  Changing the variable names
-4.  Column Binding *features* and *data_labels* to create *data*
+X_test: Test Data Features
 
-## Part 2 - Mean and Standard Deviation
+Y_train: Training Data Labels
 
-### Procedure:
+Y_test: Test data Labels
 
-1.  Turned *data* into a subset of itself with only the column that contain *"*mean()*" and "*std()*"*
+features_df: Dataframe of all the different features that were observed and their indexes
 
-## Part 3 - Renaming
+features: List of all the different features that were observed
 
-### Procedure:
+X: All Features (training and test)
 
-1.  Created a *lookup_table* to map all the numerical labels to the associated activity
-2.  Left merged *data* and *lookup_table* to have the proper activity labels
-3.  Dropped the old numerical activity labels column
+Y: All labels (training and test)
 
-## Part 4 - Column Naming
+data: DataFrame to be altered and cleaned
 
-Convention Used:
+lookup_table: Used for mapping activities to corresponding numbers
 
--    all lowercase
-
--   different words separated by period
-
--   no abbreviations
-
-### Procedure:
-
-1.  Replaced all old column names following new convention
-
-## Part 5 - Grouping by Activity
-
-### Procedure:
-
-1.  Group by activity column
-2.  Find mean of each variable and store in the dataframe *averages*
+averages: Finalized Tidy Data

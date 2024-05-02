@@ -7,16 +7,16 @@ X_test <- read.table("UCI HAR Dataset/test/X_test.txt")
 Y_test <- read.table("UCI HAR Dataset/test/y_test.txt")
 
 # loading the features (variable names)
-features <- read.table("UCI HAR Dataset/features.txt")
+features_df <- read.table("UCI HAR Dataset/features.txt")
 # features dataframe has 2 columns, first one is just indexes
-feature <- features$V2
+features <- features_df$V2
 
 # concatenating features (X) and labels(Y)
-feature_data <- rbind(X_train, X_test)
-data_labels <- rbind(Y_train, Y_test)
+X <- rbind(X_train, X_test)
+Y <- rbind(Y_train, Y_test)
 # changing column names
-names(feature_data) <- feature
-names(data_labels) <- "Labels"
+names(X) <- features
+names(Y) <- "Labels"
 # complete data with all features and labels
 data <- cbind(feature_data, data_labels)
 
