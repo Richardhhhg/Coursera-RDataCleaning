@@ -1,0 +1,118 @@
+```{r}
+X_train <- read.table("UCI HAR Dataset/train/X_train.txt")
+Y_train <- read.table("UCI HAR Dataset/train/y_train.txt")
+X_test <- read.table("UCI HAR Dataset/test/X_test.txt")
+Y_test <- read.table("UCI HAR Dataset/test/y_test.txt")
+```
+
+```{r}
+features <- read.table("UCI HAR Dataset/features.txt")
+feature <- features$V2
+```
+
+```{r}
+feature_data <- rbind(X_train, X_test)
+data_labels <- rbind(Y_train, Y_test)
+
+names(feature_data) <- feature
+names(data_labels) <- "Labels"
+
+data <- cbind(feature_data, data_labels)
+```
+
+```{r}
+# mean represented in things ending with mean()
+# standard dev representing in things ending with std()
+data_mean_std <- data[, grep("mean\\(\\)|std\\(\\)|Label", names(data))]
+```
+
+```{r}
+head(data_mean_std)
+```
+
+```{r}
+# mapping numbers to corresponding categories
+lookup_table <- data.frame (
+    category = c(1,2,3,4,5,6),
+    labels = c('walking', 'walking upstairs', 'walking downstairs',
+                'sitting', 'standing', 'laying')
+)
+merged_df <- merge(data_mean_std, lookup_table, by.x = "Labels", by.y = "category", all.x = TRUE)
+merged_df$Labels <- NULL
+```
+
+```{r}
+head(merged_df)
+```
+
+```{r}
+names(merged_df)
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
