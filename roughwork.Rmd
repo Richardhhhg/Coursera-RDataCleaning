@@ -34,7 +34,7 @@ head(data_mean_std)
 # mapping numbers to corresponding categories
 lookup_table <- data.frame (
     category = c(1,2,3,4,5,6),
-    labels = c('walking', 'walking upstairs', 'walking downstairs',
+    activity = c('walking', 'walking upstairs', 'walking downstairs',
                 'sitting', 'standing', 'laying')
 )
 merged_df <- merge(data_mean_std, lookup_table, by.x = "Labels", by.y = "category", all.x = TRUE)
@@ -50,11 +50,25 @@ names(merged_df)
 ```
 
 ```{r}
+names(merged_df) <- gsub("^t", "time.", names(merged_df))
+names(merged_df) <- gsub("^f", "frequency.", names(merged_df))
+names(merged_df) <- gsub("BodyBody", "Body", names(merged_df))
+names(merged_df) <- gsub("Body", "body.", names(merged_df))
+names(merged_df) <- gsub("Mag", "magnitude.", names(merged_df))
+names(merged_df) <- gsub("Acc", "acceleration.", names(merged_df))
+names(merged_df) <- gsub("Jerk", "jerk.", names(merged_df))
+names(merged_df) <- gsub("-mean\\(\\)", "mean", names(merged_df))
+names(merged_df) <- gsub("-std\\(\\)", "standard.deviation", names(merged_df))
+names(merged_df) <- gsub("Gyro", "gyro.", names(merged_df))
 
 ```
 
 ```{r}
-
+library(dplyr)
+mean_df <- merged_df %>%
+    group_by(activity) %>%
+    summarise(across(where(is.numeric), mean))
+print(mean_df)
 ```
 
 ```{r}

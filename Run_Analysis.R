@@ -30,17 +30,34 @@ data <- data[, grep("mean\\(\\)|std\\(\\)|Label", names(data))]
 # mapping numbers to corresponding categories
 lookup_table <- data.frame (
     category = c(1,2,3,4,5,6),
-    labels = c('walking', 'walking upstairs', 'walking downstairs',
+    activity = c('walking', 'walking upstairs', 'walking downstairs',
                'sitting', 'standing', 'laying')
 )
 # merging the two dataframes with new labels
 data <- merge(data, lookup_table, by.x = "Labels", 
                    by.y = "category", all.x = TRUE)
 # removing old numerical labels
-merged_df$Labels <- NULL
+data$Labels <- NULL
+
 
 # Part 4 - Adding Descriptive Column Names
+names(data) <- gsub("^t", "time.", names(data))
+names(data) <- gsub("^f", "frequency.", names(data))
+names(data) <- gsub("BodyBody", "Body", names(data))
+names(data) <- gsub("Body", "body.", names(data))
+names(data) <- gsub("Mag", "magnitude.", names(data))
+names(data) <- gsub("Acc", "acceleration.", names(data))
+names(data) <- gsub("Jerk", "jerk.", names(data))
+names(data) <- gsub("-mean\\(\\)", "mean", names(data))
+names(data) <- gsub("-std\\(\\)", "standard.deviation", names(data))
+names(data) <- gsub("Gyro", "gyro.", names(data))
 
+
+# Part 5 - Averaging across Activities
+library(dplyr)
+averages <- data %>%
+    group_by(activity) %>%
+    summarise(across(where(is.numeric), mean))
 
 
 
